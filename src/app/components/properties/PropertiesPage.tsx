@@ -19,12 +19,12 @@ const PropertiesPage = () => {
       <motion.div 
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="sticky top-16 z-10 border-b border-gray-200 bg-white/80 backdrop-blur-md"
+        className="sticky w-full  top-16 z-10 border-b border-gray-200 bg-white/80 backdrop-blur-md"
       >
-        <div className="mx-auto max-w-7xl px-4 py-4 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-7xl px-2 py-2 lg:py-4  lg:px-8">
           <div className="flex flex-wrap items-center justify-between gap-4">
             {/* Property Type Filter */}
-            <div className="flex space-x-4">
+            <div className="flex space-x-4 overflow-x-scroll ">
               {['All', 'Villa', 'Penthouse', 'Estate', 'Mansion'].map((type) => (
                 <button
                   key={type}

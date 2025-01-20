@@ -5,22 +5,36 @@ import { ArrowLeft, Maximize2, Bed, Bath, Square } from 'lucide-react';
 
 import Link from 'next/link';
 import { properties } from './PropertiesData';
+import Image from 'next/image';
+import { useParams } from 'next/navigation';
+
+interface Property {
+  id: string;
+  name: string;
+  description: string;
+  image: string;
+  price: number;
+}
+
+
 
 // In a real app, you'd fetch data based on the ID
 // This is a simplified version for demonstration
-const PropertyDetails = ({ params }: any) => {
+const PropertyDetails = () => {
   const [activeImage, setActiveImage] = useState(0);
-  
-  // In a real app, you'd fetch this data server-side
-  // For demo purposes, we'll just find it in our static data
-  const property = properties[2];  // You'd use params.id to find the right property
-  
-  // Additional images array (in real app, this would come from your data)
+  const { slug } = useParams(); // Extract the dynamic route parameter
+  const id = parseInt(slug?.[0] || ""); // Assuming the slug is an array and `id` is the first value
+
+ 
+
+  const property = properties.find((item) => item.id === id) 
+   
   const additionalImages = [
-    property.image,
-    property.image,  // Duplicated for demo
-    property.image,  // Duplicated for demo
+    property?.image,
+    property?.image,  // Duplicated for demo
+    property?.image,  // Duplicated for demo
   ];
+
 
   return (
     <motion.div 
@@ -29,7 +43,7 @@ const PropertyDetails = ({ params }: any) => {
       className="min-h-screen bg-white"
     >
       {/* Back Button */}
-      <div className="sticky top-0 z-10 border-b border-gray-200 bg-white/80 backdrop-blur-md">
+      <div className="sticky top-16 z-10 border-b border-gray-200 bg-white/80 backdrop-blur-md">
         <div className="mx-auto max-w-7xl px-4 py-4 sm:px-6 lg:px-8">
           <Link href="/properties" className="inline-flex items-center space-x-2 text-sm text-gray-600 hover:text-black">
             <ArrowLeft size={20} />
@@ -46,11 +60,14 @@ const PropertyDetails = ({ params }: any) => {
             animate={{ opacity: 1, y: 0 }}
             className="relative col-span-2 aspect-[4/3] overflow-hidden rounded-lg"
           >
-            <img
-              src={additionalImages[activeImage]}
+            {property?.image && (
+            <Image
+              fill
+              src={property.image}
               alt={property.title}
               className="h-full w-full object-cover"
             />
+          )}
             <button className="absolute right-4 top-4 rounded-full bg-white/80 p-2 backdrop-blur-sm hover:bg-white">
               <Maximize2 className='text-neutral-600' size={20} />
             </button>
@@ -66,7 +83,7 @@ const PropertyDetails = ({ params }: any) => {
               >
                 <img
                   src={img}
-                  alt={`${property.title} - View ${idx + 2}`}
+                  alt={`${property?.title} - View ${idx + 2}`}
                   className="h-full w-full object-cover"
                   onClick={() => setActiveImage(idx + 1)}
                 />
@@ -84,29 +101,29 @@ const PropertyDetails = ({ params }: any) => {
               className="space-y-6"
             >
               <div className="border-b border-gray-200 pb-6">
-                <h1 className="mb-2 text-3xl text-neutral-900 font-light">{property.title}</h1>
-                <p className="text-lg text-gray-600">{property.location}</p>
+                <h1 className="mb-2 text-3xl text-neutral-900 font-light">{property?.title}</h1>
+                <p className="text-lg text-gray-600">{property?.location}</p>
               </div>
 
               <div className="flex space-x-8 border-b border-gray-200 pb-6">
                 <div className="flex items-center space-x-2">
                   <Bed className="text-gray-400" size={24} />
-                  <span className='text-gray-400'>{property.beds} beds</span>
+                  <span className='text-gray-400'>{property?.beds} beds</span>
                 </div>
                 <div className="flex items-center space-x-2">
                   <Bath className="text-gray-400" size={24} />
-                  <span className='text-gray-400'>{property.baths} baths</span>
+                  <span className='text-gray-400'>{property?.baths} baths</span>
                 </div>
                 <div className="flex items-center space-x-2">
                   <Square className="text-gray-400" size={24} />
-                  <span className='text-gray-400'>{property.sqft.toLocaleString()} sqft</span>
+                  <span className='text-gray-400'>{property?.sqft.toLocaleString()} sqft</span>
                 </div>
               </div>
 
               <div className="space-y-4 border-b border-gray-200 pb-6">
                 <h2 className="text-xl text-gray-600 font-light">About this property</h2>
                 <p className="text-gray-600">
-                  This stunning {property.type.toLowerCase()} features breathtaking views and luxurious amenities. 
+                  This stunning {property?.type.toLowerCase()} features breathtaking views and luxurious amenities. 
                   The property showcases exceptional architectural design and premium finishes throughout. 
                   Perfect for those seeking the ultimate in luxury living.
                 </p>
@@ -121,7 +138,7 @@ const PropertyDetails = ({ params }: any) => {
             className="rounded-lg border border-gray-200 p-6"
           >
             <div className="mb-6 text-center">
-              <p className="text-3xl text-neutral-900 font-light">${property.price}</p>
+              <p className="text-3xl text-neutral-900 font-light">${property?.price}</p>
               <p className="text-sm text-gray-600">Listed Price</p>
             </div>
 

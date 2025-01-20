@@ -5,7 +5,7 @@ import Navigation from '../components/landing/Navbar'
 
 function Page() {
   return (
-    <main className=' '>
+    <main className=' mt-16'>
    
         <PropertiesPage/>
     </main>
