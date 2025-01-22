@@ -10,8 +10,10 @@ export const properties = [
       baths: 7,
       sqft: 8500,
       type: "Villa",
-      image: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=80&w=2370&auto=format&fit=crop"
+      image: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=80&w=2370&auto=format&fit=crop",
+      allImages: ["", "", "", "",]
     },
+
     {
       id: 252,
       title: "Modern Penthouse with Views",

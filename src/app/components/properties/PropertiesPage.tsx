@@ -1,17 +1,38 @@
-// pages/properties.tsx
 "use client"
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { properties } from './PropertiesData';
 import { Slider } from '@/components/ui/slider';
 
-
-
-
 const PropertiesPage = () => {
   const [priceRange, setPriceRange] = useState([5000000, 20000000]);
   const [selectedType, setSelectedType] = useState('All');
+  const [visibleProperties, setVisibleProperties] = useState(10);
+  const loaderRef = useRef(null); // Ref for the loader element
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) {
+          // Load more properties when the loader is in view
+          setVisibleProperties((prev) => prev + 10);
+        }
+      },
+      { threshold: 1.0 } // Trigger when the loader is fully visible
+    );
+
+    if (loaderRef.current) {
+      observer.observe(loaderRef.current); // Observe the loader element
+    }
+
+    // Cleanup observer on unmount
+    return () => {
+      if (loaderRef.current) {
+        observer.unobserve(loaderRef.current);
+      }
+    };
+  }, []);
 
   return (
     <div className="min-h-screen bg-white">
@@ -19,9 +40,9 @@ const PropertiesPage = () => {
       <motion.div 
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="sticky w-full  top-16 z-10 border-b border-gray-200 bg-white/80 backdrop-blur-md"
+        className="sticky w-full top-16 z-10 border-b border-gray-200 bg-white/80 backdrop-blur-md"
       >
-        <div className="mx-auto max-w-7xl px-2 py-2 lg:py-4  lg:px-8">
+        <div className="mx-auto max-w-7xl px-2 py-2 lg:py-4 lg:px-8">
           <div className="flex flex-wrap items-center justify-between gap-4">
             {/* Property Type Filter */}
             <div className="flex space-x-4 overflow-x-scroll ">
@@ -43,7 +64,6 @@ const PropertiesPage = () => {
             {/* Price Range Filter */}
             <div className="w-72">
               <label className="text-sm text-gray-600">Price Range</label>
-          
               <div className="flex justify-between text-sm text-gray-600">
                 <span>${(priceRange[0] / 1000000).toFixed(1)}M</span>
                 <span>${(priceRange[1] / 1000000).toFixed(1)}M</span>
@@ -60,7 +80,7 @@ const PropertiesPage = () => {
           animate={{ opacity: 1 }}
           className="grid gap-8 sm:grid-cols-2 lg:grid-cols-2"
         >
-          {properties.map((property) => (
+          {properties.slice(0, visibleProperties).map((property) => (
             <motion.div
               key={property.id}
               initial={{ opacity: 0, y: 20 }}
@@ -77,6 +97,7 @@ const PropertiesPage = () => {
                   layout="fill"
                   objectFit="cover"
                   className="transition-transform duration-500 group-hover:scale-110"
+                  loading="lazy"
                 />
               </div>
 
@@ -108,6 +129,9 @@ const PropertiesPage = () => {
             </motion.div>
           ))}
         </motion.div>
+
+        {/* Loader for Infinite Scroll */}
+        <div ref={loaderRef} className="h-10"></div>
       </div>
     </div>
   );

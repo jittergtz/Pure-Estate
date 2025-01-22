@@ -2,39 +2,25 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowLeft, Maximize2, Bed, Bath, Square } from 'lucide-react';
-
 import Link from 'next/link';
 import { properties } from './PropertiesData';
 import Image from 'next/image';
 import { useParams } from 'next/navigation';
+import ImageCarouselModal from './ImageCarousel';
 
-interface Property {
-  id: string;
-  name: string;
-  description: string;
-  image: string;
-  price: number;
-}
-
-
-
-// In a real app, you'd fetch data based on the ID
-// This is a simplified version for demonstration
 const PropertyDetails = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [activeImage, setActiveImage] = useState(0);
-  const { slug } = useParams(); // Extract the dynamic route parameter
-  const id = parseInt(slug?.[0] || ""); // Assuming the slug is an array and `id` is the first value
-
- 
-
-  const property = properties.find((item) => item.id === id) 
-   
-  const additionalImages = [
+  const { slug } = useParams();
+  const id = parseInt(slug?.[0] || "");
+  
+  const property = properties.find((item) => item.id === id);
+  
+  const allImages = [
     property?.image,
-    property?.image,  // Duplicated for demo
-    property?.image,  // Duplicated for demo
-  ];
-
+    property?.image,  // Replace with actual additional images
+    property?.image,  // Replace with actual additional images
+  ].filter(Boolean);
 
   return (
     <motion.div 
@@ -61,38 +47,54 @@ const PropertyDetails = () => {
             className="relative col-span-2 aspect-[4/3] overflow-hidden rounded-lg"
           >
             {property?.image && (
-            <Image
-              fill
-              src={property.image}
-              alt={property.title}
-              className="h-full w-full object-cover"
-            />
-          )}
-            <button className="absolute right-4 top-4 rounded-full bg-white/80 p-2 backdrop-blur-sm hover:bg-white">
+              <Image
+                fill
+                src={property.image}
+                alt={property.title}
+                className="h-full w-full object-cover"
+                priority // Prioritize loading the first image
+              />
+            )}
+            <button 
+              onClick={() => setIsModalOpen(true)}
+              className="absolute right-4 top-4 rounded-full bg-white/80 p-2 backdrop-blur-sm hover:bg-white"
+            >
               <Maximize2 className='text-neutral-600' size={20} />
             </button>
           </motion.div>
           
           <div className="hidden lg:grid lg:grid-rows-2 lg:gap-4">
-            {additionalImages.slice(1, 3).map((img, idx) => (
+            {allImages.slice(1, 3).map((img, idx) => (
               <motion.div
                 key={idx}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 className="relative aspect-[4/3] overflow-hidden rounded-lg"
               >
-                <img
+                <Image
+                  fill
                   src={img}
                   alt={`${property?.title} - View ${idx + 2}`}
                   className="h-full w-full object-cover"
-                  onClick={() => setActiveImage(idx + 1)}
+                  loading="lazy" // Lazy load additional images
+                  onClick={() => {
+                    setActiveImage(idx + 1);
+                    setIsModalOpen(true);
+                  }}
                 />
               </motion.div>
             ))}
           </div>
         </div>
 
-        {/* Property Details */}
+        {/* Image Carousel Modal */}
+        <ImageCarouselModal
+          images={allImages}
+          initialIndex={activeImage}
+          isOpen={isModalOpen}
+          onClose={() => setIsModalOpen(false)}
+        />
+
         <div className="grid gap-8 lg:grid-cols-3">
           <div className="lg:col-span-2">
             <motion.div
