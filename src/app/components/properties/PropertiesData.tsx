@@ -23,7 +23,8 @@ export const properties = [
       baths: 5,
       sqft: 5200,
       type: "Penthouse",
-      image: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?q=80&w=2375&auto=format&fit=crop"
+      image: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?q=80&w=2375&auto=format&fit=crop",
+      allImages: ["", "", "", "",]
     },
     {
       id: 253,
@@ -34,7 +35,8 @@ export const properties = [
       baths: 10,
       sqft: 12000,
       type: "Estate",
-      image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2370&auto=format&fit=crop"
+      image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2370&auto=format&fit=crop",
+      allImages: ["", "", "", "",]
     },
     {
       id: 254,
@@ -45,7 +47,8 @@ export const properties = [
       baths: 8,
       sqft: 9800,
       type: "Mansion",
-      image: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=2370&auto=format&fit=crop"
+      image: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=2370&auto=format&fit=crop",
+      allImages: ["", "", "", "",]
     },
     {
       id: 255,
@@ -56,7 +59,8 @@ export const properties = [
       baths: 6,
       sqft: 7200,
       type: "Villa",
-      image: "https://images.unsplash.com/photo-1512915922686-57c11dde9b6b?q=80&w=2946&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D?q=80&w=2370&auto=format&fit=crop"
+      image: "https://images.unsplash.com/photo-1512915922686-57c11dde9b6b?q=80&w=2946&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D?q=80&w=2370&auto=format&fit=crop",
+      allImages: ["", "", "", "",]
     },
     {
       id: 256,
@@ -67,7 +71,8 @@ export const properties = [
       baths: 4.5,
       sqft: 4800,
       type: "Penthouse",
-      image: "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?q=80&w=2370&auto=format&fit=crop"
+      image: "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?q=80&w=2370&auto=format&fit=crop",
+      allImages: ["", "", "", "",]
     },
     {
       id: 257,
@@ -78,7 +83,8 @@ export const properties = [
       baths: 11,
       sqft: 15000,
       type: "Mansion",
-      image: "https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?q=80&w=2370&auto=format&fit=crop"
+      image: "https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?q=80&w=2370&auto=format&fit=crop",
+      allImages: ["", "", "", "",]
     },
     {
       id: 258,
@@ -89,7 +95,8 @@ export const properties = [
       baths: 6,
       sqft: 6800,
       type: "Estate",
-      image: "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?q=80&w=2370&auto=format&fit=crop"
+      image: "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?q=80&w=2370&auto=format&fit=crop",
+      allImages: ["", "", "", "",]
     },
     {
       id: 259,
@@ -100,7 +107,8 @@ export const properties = [
       baths: 7,
       sqft: 7500,
       type: "Villa",
-      image: "https://images.unsplash.com/photo-1682681857663-7a5cf876ad1a?q=80&w=2832&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D?q=80&w=2370&auto=format&fit=crop"
+      image: "https://images.unsplash.com/photo-1682681857663-7a5cf876ad1a?q=80&w=2832&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D?q=80&w=2370&auto=format&fit=crop",
+      allImages: ["", "", "", "",]
     },
     {
       id: 2510,

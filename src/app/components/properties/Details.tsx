@@ -17,9 +17,9 @@ const PropertyDetails = () => {
   const property = properties.find((item) => item.id === id);
   
   const allImages = [
-    property?.image,
-    property?.image,  // Replace with actual additional images
-    property?.image,  // Replace with actual additional images
+    property!.image,
+    property!.image,  // Replace with actual additional images
+    property!.image,  // Replace with actual additional images
   ].filter(Boolean);
 
   return (
@@ -73,7 +73,7 @@ const PropertyDetails = () => {
               >
                 <Image
                   fill
-                  src={img}
+                  src={img as string}
                   alt={`${property?.title} - View ${idx + 2}`}
                   className="h-full w-full object-cover"
                   loading="lazy" // Lazy load additional images
@@ -86,14 +86,15 @@ const PropertyDetails = () => {
             ))}
           </div>
         </div>
-
-        {/* Image Carousel Modal */}
+        {allImages && (
+       
         <ImageCarouselModal
           images={allImages}
           initialIndex={activeImage}
           isOpen={isModalOpen}
           onClose={() => setIsModalOpen(false)}
         />
+        )}
 
         <div className="grid gap-8 lg:grid-cols-3">
           <div className="lg:col-span-2">
