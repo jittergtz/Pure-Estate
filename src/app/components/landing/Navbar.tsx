@@ -74,7 +74,7 @@ const NavigationHome = () => {
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            className="text-2xl font-light text-white"
+            className="text-2xl font-light  text-white"
           >
             Pure<span className="font-serif italic">Estate</span>
           </motion.div>
@@ -216,9 +216,9 @@ export const NavigationProperties = () => {
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            className="text-2xl font-light "
+            className="text-2xl font-light  "
           >
-            Pure<span className="font-serif italic">Estate</span>
+            Pure<span className="font-serif italic ">Estate</span>
           </motion.div>
 
           {/* Desktop Navigation */}

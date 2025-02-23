@@ -139,9 +139,9 @@ const images = [
                   <Link href={"/properties"} className="border border-white bg-white px-8 py-3 text-sm font-medium text-black transition-colors hover:bg-transparent hover:text-white">
                     View Properties
                   </Link>
-                  <button className="border border-white px-8 py-3 text-sm font-medium text-white transition-colors hover:bg-white hover:text-black">
+                  <Link href={"/contact"}  className="border border-white px-8 py-3 text-sm font-medium text-white transition-colors hover:bg-white hover:text-black">
                     Contact Us
-                  </button>
+                    </Link>
                 </motion.div>
               </motion.div>
             </div>

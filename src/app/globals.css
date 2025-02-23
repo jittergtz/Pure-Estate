@@ -70,3 +70,17 @@ body {
     @apply bg-background text-foreground;
   }
 }
+
+
+.scrollerOff {
+
+    overflow: hidden;
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+
+  
+  /* For WebKit-based browsers like Chrome and Safari */
+  ::-webkit-scrollbar {
+    display: none;
+  }
+}
