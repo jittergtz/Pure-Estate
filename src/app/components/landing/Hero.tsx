@@ -15,13 +15,28 @@ const images = [
     },
     {
       id: 2,
-      url: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?q=80&w=2375&auto=format&fit=crop",
+      url: "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       alt: "Modern penthouse interior"
     },
     {
       id: 3,
       url: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2370&auto=format&fit=crop",
       alt: "Contemporary mountain estate"
+    },
+    {
+      id: 4,
+      url: "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?q=80&w=2370&auto=format&fit=crop",
+      alt: "Desert Oasis Villa"
+    },
+    {
+      id: 5,
+      url: "https://images.unsplash.com/photo-1623298317883-6b70254edf31?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      alt: "Contemporary mountain estate"
+    },
+    {
+      id: 6,
+      url: "https://images.unsplash.com/photo-1626144040821-c09468c1c75e?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      alt: "Executive City Penthouse"
     }
   ];
   
@@ -34,7 +49,7 @@ const images = [
       const intervalId = setInterval(() => {
         setIsTransitioning(true);
         setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length);
-      }, 10000); // Change image every 10 seconds
+      }, 4000); // Change image every 10 seconds
   
       // Cleanup interval on component unmount
       return () => clearInterval(intervalId);
@@ -110,8 +125,8 @@ const images = [
   
         {/* Content Overlay */}
         <div className="relative h-full w-full bg-gradient-to-b from-black/40 to-black/70">
-          <div className="mx-auto max-w-7xl px-4 py-32 sm:px-6 lg:px-8">
-            <div className="flex h-full flex-col justify-center">
+          <div className="mx-auto max-w-7xl px-4 py-32 sm:px-6 lg:px-8 ">
+            <div className="flex h-full flex-col justify-center 2xl:mt-20">
               <motion.div
                 {...fadeIn}
                 className="max-w-3xl"
