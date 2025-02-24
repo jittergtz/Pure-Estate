@@ -2,6 +2,7 @@
 "use client";
 
 import { motion } from 'framer-motion';
+import Image from 'next/image';
 import { useState } from 'react';
 
 const ContactPage = () => {
@@ -33,26 +34,18 @@ const ContactPage = () => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="bg-white text-black min-h-screen" // Base styles: white background, black text, full screen height
+      className="bg-white pt-20  text-black min-h-screen" // Base styles: white background, black text, full screen height
     >
-      <motion.header
-        initial={{ y: -20, opacity: 0 }}
-        animate={{ y: 0, opacity: 1, transition: { duration: 0.8, delay: 0.2 } }}
-        className="sticky top-0 z-10 bg-white/90 backdrop-blur-md border-b border-gray-200 py-6" // Sticky header with blur and border
-      >
-        <div className="container mx-auto px-6 lg:px-8">
-          <h1 className="text-2xl font-semibold tracking-tight">Contact Us</h1> {/* Page title */}
-        </div>
-      </motion.header>
+   
 
       <motion.main
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0, transition: { duration: 0.8, delay: 0.4 } }}
-        className="container mx-auto px-6 py-12 lg:px-8 flex flex-col lg:flex-row gap-10" // Main content container, flex layout for form and info
+        className="container  mx-auto  h-full   flex flex-col lg:flex-row gap-10" // Main content container, flex layout for form and info
       >
         {/* Contact Form Section */}
-        <motion.section className="lg:w-1/2">
-          <motion.h2 className="text-xl font-semibold mb-6">Send us a Message</motion.h2> {/* Form section heading */}
+        <motion.section className="lg:w-1/2 px-2 h-full">
+          <motion.h2 className="text-xl  mb-6">Send us a Message</motion.h2> {/* Form section heading */}
           <form onSubmit={handleSubmit} className="space-y-4">
             {/* Name Input */}
             <div>
@@ -62,9 +55,10 @@ const ContactPage = () => {
               <input
                 type="text"
                 id="name"
+                placeholder="Marc"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
-                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-black focus:ring-black sm:text-sm"
+                className="mt-1 block w-full py-2 px-2 border outline-black border-gray-600  shadow-sm focus:border-black focus:ring-black sm:text-sm"
                 required
               />
             </div>
@@ -77,8 +71,9 @@ const ContactPage = () => {
                 type="email"
                 id="email"
                 value={email}
+                placeholder='Marc@storefront.com'
                 onChange={(e) => setEmail(e.target.value)}
-                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-black focus:ring-black sm:text-sm"
+                className="mt-1 block w-full py-2 px-2 border outline-black border-gray-600 shadow-sm focus:border-black focus:ring-black sm:text-sm"
                 required
               />
             </div>
@@ -92,7 +87,7 @@ const ContactPage = () => {
                 value={message}
                 onChange={(e) => setMessage(e.target.value)}
                 rows={5}
-                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-black focus:ring-black sm:text-sm"
+                className="mt-1 h-64 block w-full outline-black border px-2 border-gray-600 shadow-sm focus:border-black focus:ring-black sm:text-sm"
                 required
               />
             </div>
@@ -102,7 +97,7 @@ const ContactPage = () => {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 type="submit"
-                className={`inline-flex items-center rounded-md border border-black bg-black px-8 py-3 text-sm font-medium text-white shadow-sm transition-colors hover:bg-white hover:text-black focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-2 disabled:opacity-50 ${formStatus === 'loading' ? 'cursor-wait' : ''}`}
+                className={` w-full items-center  border border-black bg-black px-8 py-3 text-sm font-medium text-white shadow-sm transition-colors hover:bg-white hover:text-black focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-2 disabled:opacity-50 ${formStatus === 'loading' ? 'cursor-wait' : ''}`}
                 disabled={formStatus === 'loading'}
               >
                 {formStatus === 'loading' ? (
@@ -123,42 +118,42 @@ const ContactPage = () => {
         </motion.section>
 
         {/* Contact Information Section */}
-        <motion.section className="lg:w-1/2">
-          <motion.h2 className="text-xl font-semibold mb-6">Our Contact Information</motion.h2> {/* Contact info section heading */}
-          <div className="space-y-4 text-gray-700">
+        <motion.section className="lg:w-1/2 h-[600px] overflow-hidden   relative bg-black  px-6 py-12 lg:px-8 ">
+        <Image
+        src={"/contactSection.jpg"}
+        alt='cover'
+        fill
+        className='object-cover pointer-events-none opacity-60'
+        />
+        <div className='absolute  w-full'>
+          <motion.h2 className="text-xl lg:text-3xl text-neutral-50  mb-6">Our Contact Information</motion.h2> {/* Contact info section heading */}
+          <div className="space-y-4 text-neutral-50">
             <div>
-              <h3 className="font-medium text-gray-800">Address</h3>
+              <h3 className="font-medium lg:text-xl text-gray-300">Address</h3>
               <p>123 Luxury Lane</p>
               <p>Beverly Hills, CA 90210</p>
               <p>USA</p>
             </div>
             <div>
-              <h3 className="font-medium text-gray-800">Phone</h3>
+              <h3 className="font-medium lg:text-xl text-gray-300">Phone</h3>
               <p>+1 (555) 123-4567</p>
             </div>
             <div>
-              <h3 className="font-medium text-gray-800">Email</h3>
+              <h3 className="font-medium lg:text-xl text-gray-300">Email</h3>
               <p>info@luxuryestates.com</p>
             </div>
             <div>
-              <h3 className="font-medium text-gray-800">Opening Hours</h3>
+              <h3 className="font-medium lg:text-xl text-gray-300">Opening Hours</h3>
               <p>Monday - Friday: 9am - 6pm</p>
               <p>Saturday: 10am - 4pm</p>
               <p>Sunday: Closed</p>
             </div>
           </div>
+          </div>
         </motion.section>
       </motion.main>
 
-      <motion.footer
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0, transition: { duration: 0.8, delay: 0.6 } }}
-        className="border-t border-gray-200 py-10 mt-20" // Footer with top border
-      >
-        <div className="container mx-auto px-6 lg:px-8 text-center text-gray-500">
-          <p>&copy; {new Date().getFullYear()} Luxury Estates. All rights reserved.</p> {/* Footer copyright text */}
-        </div>
-      </motion.footer>
+     
     </motion.div>
   );
 };
